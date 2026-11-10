@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PrintLab CR · Tecnología de advertising para marketplaces</title>
+  <meta name="description" content="PrintLab CR desarrolla herramientas tecnológicas de reporting y optimización de publicidad para Amazon, Walmart y Shopify." />
+  <link rel="icon" href="logo.png" />
+  <style>
+    :root {
+      --cyan: #01abf4;
+      --magenta: #f30084;
+      --yellow: #fddf00;
+      --ink: #111111;
+      --muted: #5a5a5a;
+      --line: #ececec;
+      --bg: #ffffff;
+      --soft: #f7f7f8;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    a { color: inherit; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    .bar { height: 6px; background: linear-gradient(90deg, var(--cyan) 0 33.3%, var(--magenta) 33.3% 66.6%, var(--yellow) 66.6%); }
+
+    header { border-bottom: 1px solid var(--line); background: rgba(255,255,255,.92); position: sticky; top: 0; backdrop-filter: blur(8px); z-index: 10; }
+    header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 20px; letter-spacing: -.02em; }
+    .brand img { height: 42px; width: auto; }
+    nav { display: flex; gap: 22px; font-size: 15px; }
+    nav a { text-decoration: none; color: var(--muted); }
+    nav a:hover { color: var(--ink); }
+
+    .hero { padding: 88px 0 72px; }
+    .hero .wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: center; }
+    .eyebrow { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--magenta); margin-bottom: 14px; }
+    h1 { font-size: clamp(34px, 5vw, 54px); line-height: 1.05; letter-spacing: -.035em; margin: 0 0 18px; }
+    h1 .hl { background: linear-gradient(transparent 62%, rgba(253,223,0,.75) 62%); }
+    .lead { font-size: 19px; color: var(--muted); max-width: 560px; margin: 0 0 28px; }
+    .btn { display: inline-block; background: var(--ink); color: #fff; text-decoration: none; font-weight: 600; padding: 13px 22px; border-radius: 10px; }
+    .btn:hover { background: #000; }
+    .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); margin-left: 8px; }
+    .hero-art { display: grid; place-items: center; }
+    .hero-art img { width: min(320px, 100%); height: auto; }
+
+    section { padding: 72px 0; }
+    section.alt { background: var(--soft); }
+    h2 { font-size: clamp(26px, 3.5vw, 36px); letter-spacing: -.03em; margin: 0 0 10px; }
+    .sub { color: var(--muted); max-width: 640px; margin: 0 0 36px; }
+
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 26px; position: relative; overflow: hidden; }
+    .card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--accent); }
+    .card h3 { margin: 4px 0 6px; font-size: 21px; letter-spacing: -.02em; }
+    .card .tag { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .card ul { margin: 14px 0 0; padding-left: 18px; color: #333; }
+    .card li { margin: 6px 0; }
+
+    .features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 28px; }
+    .feature { display: flex; gap: 14px; align-items: flex-start; }
+    .dot { flex: none; width: 12px; height: 12px; border-radius: 50%; margin-top: 8px; }
+    .feature h4 { margin: 0 0 2px; font-size: 17px; }
+    .feature p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: s; }
+    .step { border-top: 2px solid var(--ink); padding-top: 14px; }
+    .step::before { counter-increment: s; content: "0" counter(s); font-weight: 800; font-size: 14px; color: var(--magenta); }
+    .step h4 { margin: 6px 0 4px; font-size: 17px; }
+    .step p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .cta { background: var(--ink); color: #fff; border-radius: 20px; padding: 44px; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .cta h2 { color: #fff; margin: 0 0 6px; }
+    .cta p { margin: 0; color: #cfcfcf; }
+    .cta .btn { background: var(--yellow); color: var(--ink); }
+
+    footer { border-top: 1px solid var(--line); padding: 28px 0; font-size: 14px; color: var(--muted); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+    @media (max-width: 860px) {
+      .hero .wrap, .grid3, .features, .steps { grid-template-columns: 1fr; }
+      .hero { padding: 56px 0 40px; }
+      .hero-art { order: -1; }
+      .hero-art img { width: 180px; }
+      nav { display: none; }
+      .btn.ghost { margin: 10px 0 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bar"></div>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="#" aria-label="PrintLab CR"><img src="logo.png" alt="PrintLab" /><span style="font-size:13px;letter-spacing:.12em;color:var(--magenta)">CR</span></a>
+      <nav>
+        <a href="#plataformas">Plataformas</a>
+        <a href="#soluciones">Soluciones</a>
+        <a href="#proceso">Cómo trabajamos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">Advertising tech · Costa Rica</span>
+          <h1>Tecnología para que tu publicidad en marketplaces <span class="hl">rinda más</span>.</h1>
+          <p class="lead">En PrintLab CR desarrollamos herramientas de reporting, análisis y optimización de campañas para marcas que venden en Amazon, Walmart y Shopify.</p>
+          <a class="btn" href="#soluciones">Ver soluciones</a>
+          <a class="btn ghost" href="#contacto">Contáctanos</a>
+        </div>
+        <div class="hero-art"><img src="logo.png" alt="Logo de PrintLab" /></div>
+      </div>
+    </section>
+
+    <section id="plataformas" class="alt">
+      <div class="wrap">
+        <h2>Plataformas</h2>
+        <p class="sub">Conectamos los datos de publicidad y ventas de cada canal para tomar decisiones con información completa.</p>
+        <div class="grid3">
+          <article class="card" style="--accent: var(--cyan)">
+            <span class="tag">Marketplace</span>
+            <h3>Amazon</h3>
+            <ul>
+              <li>Sponsored Products, Brands y Display</li>
+              <li>Análisis de términos de búsqueda y targeting</li>
+              <li>Cruce de Ads con ventas totales (TACOS)</li>
+            </ul>
+          </article>
+          <article class="card" style="--accent: var(--magenta)">
+            <span class="tag">Marketplace</span>
+            <h3>Walmart</h3>
+            <ul>
+              <li>Reportes de Walmart Connect</li>
+              <li>Seguimiento de campañas por producto</li>
+              <li>Comparativo de rendimiento entre canales</li>
+            </ul>
+          </article>
+          <article class="card" style="--accent: var(--yellow)">
+            <span class="tag">E-commerce propio</span>
+            <h3>Shopify</h3>
+            <ul>
+              <li>Ventas y conversión de la tienda propia</li>
+              <li>Atribución de campañas que llevan tráfico a la tienda</li>
+              <li>Vista consolidada junto a los marketplaces</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="soluciones">
+      <div class="wrap">
+        <h2>Soluciones</h2>
+        <p class="sub">Herramientas propias, enfocadas en convertir reportes en acciones concretas.</p>
+        <div class="features">
+          <div class="feature"><span class="dot" style="background: var(--cyan)"></span><div><h4>Dashboards semanales</h4><p>KPIs de ventas, inversión, ACOS, ROAS y TACOS con comparativo contra semanas anteriores.</p></div></div>
+          <div class="feature"><span class="dot" style="background: var(--magenta)"></span><div><h4>Optimización de pujas</h4><p>Sugerencias de puja por keyword y target según un objetivo de rentabilidad.</p></div></div>
+          <div class="feature"><span class="dot" style="background: var(--yellow)"></span><div><h4>Análisis de búsquedas</h4><p>Detección de términos para negativizar y oportunidades para nuevas keywords.</p></div></div>
+          <div class="feature"><span class="dot" style="background: var(--ink)"></span><div><h4>Alertas automáticas</h4><p>Avisos de gasto sin ventas, caídas de tráfico o conversión y cambios relevantes.</p></div></div>
+          <div class="feature"><span class="dot" style="background: var(--cyan)"></span><div><h4>Reportes ejecutivos</h4><p>Reportes listos para compartir con la dirección, con resumen y próximos pasos.</p></div></div>
+          <div class="feature"><span class="dot" style="background: var(--magenta)"></span><div><h4>Integración por API</h4><p>Descarga automática de datos desde las API oficiales de cada plataforma.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proceso" class="alt">
+      <div class="wrap">
+        <h2>Cómo trabajamos</h2>
+        <p class="sub">Un proceso simple y repetible, semana a semana.</p>
+        <div class="steps">
+          <div class="step"><h4>Conectar</h4><p>Integramos las cuentas de publicidad y ventas de cada canal.</p></div>
+          <div class="step"><h4>Consolidar</h4><p>Organizamos los datos en cortes semanales comparables.</p></div>
+          <div class="step"><h4>Analizar</h4><p>Identificamos qué funciona, qué no y por qué.</p></div>
+          <div class="step"><h4>Optimizar</h4><p>Proponemos y aplicamos ajustes medibles.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <h2>¿Hablamos?</h2>
+            <p>Cuéntanos en qué canales vendes y cómo manejas hoy tu publicidad.</p>
+          </div>
+          <a class="btn" href="#contacto">Escríbenos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 PrintLab CR · Costa Rica</span>
+      <span><a href="https://namelessturtle.github.io/pipo-perico-privacy/">Aviso de privacidad</a></span>
+    </div>
+  </footer>
+</body>
+</html>
